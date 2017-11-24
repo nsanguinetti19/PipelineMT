@@ -41,7 +41,6 @@ pipeline {
         stage('Deploy') {
 			environment {
 				KBDir = credentials('MTKBDir')
-				TADir = credentials('MTTADir')
 				TMDir = credentials('MTTMDir')
 				BetaBatchDir = credentials('MTBetaBatchDir') 
 				KBBatchDir = credentials('MTBatchKBDir')
@@ -54,7 +53,7 @@ pipeline {
 			parallel {
 				stage('Deploy TA') {
 					steps {
-						echo 'Deploying...'
+						echo 'No existe el ambiente de TA aún.'
 					}
 				}
 				stage('Deploy Beta') {
