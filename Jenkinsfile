@@ -55,7 +55,6 @@ pipeline {
 				stage('Deploy TA') {
 					steps {
 						echo 'Deploying...'
-						build job: 'Deploy', parameters: [text(name: 'DeployOrigen', value: "${KBDir}"), text(name: 'DeployDestino', value: "${TADir}")]
 					}
 				}
 				stage('Deploy Beta') {
