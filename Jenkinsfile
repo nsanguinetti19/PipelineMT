@@ -59,6 +59,7 @@ pipeline {
                 currentBuild.result == null || currentBuild.result == 'SUCCESS' 
               }
             }
+			
 			parallel {
 				stage('Deploy TA') {
 					steps {
