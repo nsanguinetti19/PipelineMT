@@ -38,6 +38,15 @@ pipeline {
 				}
 			}
 		}
+		stage('Clean Beta'){
+			environment {
+				MTDir = credentials('MTTMDir')
+				MTUser = credentials('MTIISUser')
+			}
+			steps {
+				build job: 'Clean', parameters: [text(name: 'Directorio', value: "${MTDir}"),  text(name: 'Usuario', value: "${MTUser}")]
+			}
+		}
         stage('Deploy') {
 			environment {
 				KBDir = credentials('MTKBDir')
