@@ -24,6 +24,7 @@ pipeline {
 				stage('Comparar Navegaciones') {
 					steps {
 						echo '----- Comparo Navegaciones -----'
+						build 'Compare-Navigations'
 					}
 				}
 				stage('Test Unitario') {
