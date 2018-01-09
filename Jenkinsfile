@@ -28,7 +28,7 @@ pipeline {
 					}
 					steps {
 						echo '----- Comparo Navegaciones -----'
-						build 'Compare-Navigations', parameters: [text(name: 'KBPath', value: "${KBDir}"),  text(name: 'GX_PROGRAM_DIR', value: "${GXPROGRAMDIR}")]
+						build job: 'Compare-Navigations', parameters: [text(name: 'KBPath', value: "${KBDir}"),  text(name: 'GX_PROGRAM_DIR', value: "${GXPROGRAMDIR}")]
 					}
 				}
 				stage('Test Unitario') {
