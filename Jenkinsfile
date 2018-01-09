@@ -74,7 +74,7 @@ pipeline {
 				stage('Deploy Beta') {
 					steps {
 						echo 'Deploying...'
-						build job: 'Deploy', parameters: [text(name: 'DeployOrigen', value: "${KBDir}\\Pro\\web\\"), text(name: 'DeployDestino', value: "${TMDir}")]
+						build job: 'Deploy', parameters: [text(name: 'DeployOrigen', value: "${KBDir}\\Pro\\web"), text(name: 'DeployDestino', value: "${TMDir}")]
 					}
 				}
 				stage('Deploy BetaBatch') {
