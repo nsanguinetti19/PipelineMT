@@ -22,9 +22,13 @@ pipeline {
 		stage('Validaciones') {
 			parallel {
 				stage('Comparar Navegaciones') {
+					environment {
+						KBDir = credentials('MTKBDir')
+						GXPROGRAMDIR = credentials('GXPROGRAMDIR')
+					}
 					steps {
 						echo '----- Comparo Navegaciones -----'
-						build 'Compare-Navigations'
+						build 'Compare-Navigations', parameters: [text(name: 'KBPath', value: "${KBDir}"),  text(name: 'GX_PROGRAM_DIR', value: "${GXPROGRAMDIR}")]
 					}
 				}
 				stage('Test Unitario') {
