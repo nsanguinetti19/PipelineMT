@@ -21,16 +21,6 @@ pipeline {
         }
 		stage('Validaciones') {
 			parallel {
-/*				stage('Comparar Navegaciones') {
-					environment {
-						KBDir = credentials('MTKBDir')
-						GXPROGRAMDIR = credentials('GXPROGRAMDIR')
-					}
-					steps {
-						echo '----- Comparo Navegaciones -----'
-						build job: 'Compare-Navigations', parameters: [text(name: 'KBPath', value: "${KBDir}"),  text(name: 'GX_PROGRAM_DIR', value: "${GXPROGRAMDIR}")]
-					}
-				}*/
 				stage('Test Unitario') {
 					steps {
 						echo '----- Testing.. -----'
@@ -43,15 +33,17 @@ pipeline {
 				}
 			}
 		}
-		stage('Clean Beta'){
+/*		stage('Clean Beta'){
 			environment {
 				MTDir = credentials('MTTMDir')
 				MTUser = credentials('MTIISUser')
+				MTBat = credentials('BatPermissionsMTBeta15')
+				MTAppPass = credentials('passwordAplicaciones')
 			}
 			steps {
-				build job: 'Clean', parameters: [text(name: 'Directorio', value: "${MTDir}"),  text(name: 'Usuario', value: "${MTUser}")]
+				build job: 'Clean', parameters: [text(name: 'Directorio', value: "${MTDir}"),  text(name: 'Usuario', value: "aplicaciones"), text(name: 'Password', value: "${MTAppPass}", text(name: 'Bat', value: "${MTBat}"))]
 			}
-		}
+		}*/
         stage('Deploy') {
 			environment {
 				KBDir = credentials('MTKBDir')
