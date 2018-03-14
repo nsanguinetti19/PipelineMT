@@ -33,17 +33,15 @@ pipeline {
 				}
 			}
 		}
-/*		stage('Clean Beta'){
+		stage('Clean Beta'){
 			environment {
 				MTDir = credentials('MTTMDir')
-				MTUser = credentials('MTIISUser')
-				MTBat = credentials('BatPermissionsMTBeta15')
-				MTAppPass = credentials('passwordAplicaciones')
+				MTUser = credentials('MTBetaIISUser')
 			}
 			steps {
-				build job: 'Clean', parameters: [text(name: 'Directorio', value: "${MTDir}"),  text(name: 'Usuario', value: "aplicaciones"), text(name: 'Password', value: "${MTAppPass}", text(name: 'Bat', value: "${MTBat}"))]
+				build job: 'Clean', parameters: [text(name: 'Directorio', value: "${MTDir}"),  text(name: 'Usuario', value: "${MTUser}"), text(name: 'ComputerName', value: "EVA")]
 			}
-		}*/
+		}
         stage('Deploy') {
 			environment {
 				KBDir = credentials('MTKBDir')
