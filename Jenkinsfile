@@ -3,20 +3,27 @@ pipeline {
 
     stages {
         stage('Update') {
+			environment {
+				GXPROGRAMDIR = credentials('GXPROGRAMDIR')
+				SERVERUSER = credentials('MTSERVERUSER')
+				SERVERPASS = credentials('MTSERVERPASS')
+				KBDIR = credentials('MTKBDir')
+			}
             steps {
                 echo '----- Update from GXServer -----'
-				build 'Update'
-            }
+				build job:'Update', parameters: [text(name: 'GXPROGRAMDIR', value: "${GXPROGRAMDIR}"),text(name: 'SERVERUSER', value: "${SERVERUSER}"),text(name: 'SERVERPASS', value: "${SERVERPASS}"),text(name: 'KBDIR', value: "${KBDIR}"),text(name: 'KBVERSION', value: "MT15")]
+			}
         }
 		stage('Build') {
-		    when {
-              expression {
-                currentBuild.result == null || currentBuild.result == 'SUCCESS' 
-              }
-            }
+			environment {
+				GXPROGRAMDIR = credentials('GXPROGRAMDIR')
+				SERVERUSER = credentials('MTSERVERUSER')
+				SERVERPASS = credentials('MTSERVERPASS')
+				KBDIR = credentials('MTKBDir')
+			}
             steps {
-                echo '----- Building MT -----'
-				build 'Build'
+                echo '----- Building -----'
+				build job:'Build', parameters: [text(name: 'GXPROGRAMDIR', value: "${GXPROGRAMDIR}"),text(name: 'SERVERUSER', value: "${SERVERUSER}"),text(name: 'SERVERPASS', value: "${SERVERPASS}"),text(name: 'KBDIR', value: "${KBDIR}"),text(name: 'KBVERSION', value: "MT15")]
             }
         }
 		stage('Validaciones') {
